@@ -1,0 +1,25 @@
+{
+  "demo.title": "traduccion demo",
+  "demo.text": "a ramon le duelen los huevos",
+
+  "navList.tema1":"Economía-Finanzas",
+  "navList.tema2":"Organizacional y Recursos Humanos",
+  "navList.tema3":"Perfeccionamiento Empresarial",
+  "navList.tema4":"Desarrollo Tecnológico y Sistemas de Gestión",
+  "navList.tema5":"Desarrollo Gerencial",
+  "navList.tema6":"Comunicación Empresarial",
+  "navList.tema7":"Seguridad Informática",
+  "navList.tema8":"Informática",
+
+  "navBar.home":"Inicio",
+  "navBar.who":"Quiénes somos?",
+  "navBar.theme":"Tema",
+  "navBar.contact":"Contactos",
+    "navBar.theme.ligth":"Blanco",
+    "navBar.theme.dark":"Oscuro",
+    "navBar.theme.blue":"Azul",
+
+  "dashboard.slider":"Diapositivas",
+  "dashboard.graph":"Gráficos",
+  "dashboard.continue":"Y muchas cosas más..."
+}

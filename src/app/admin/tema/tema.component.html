@@ -1,0 +1,183 @@
+<hr>
+<div class="container">
+  <hr>
+  <div class="row">
+    <div class="col-12 text-center">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" (change) = "selectedItem($event)" checked>
+        <label class="form-check-label" for="inlineRadio1">Econ-Finan</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" (change) = "selectedItem($event)">
+        <label class="form-check-label" for="inlineRadio2">Orga-RH</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" (change) = "selectedItem($event)">
+        <label class="form-check-label" for="inlineRadio3">Perfet-Empres</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4" (change) = "selectedItem($event)">
+        <label class="form-check-label" for="inlineRadio4">Tech-SistGestión</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5" (change) = "selectedItem($event)">
+        <label class="form-check-label" for="inlineRadio5">Desa-Geren</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="6" (change) = "selectedItem($event)">
+        <label class="form-check-label" for="inlineRadio6">Comun-Empre</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio7" value="7" (change) = "selectedItem($event)">
+        <label class="form-check-label" for="inlineRadio7">Seg-Inf</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio8" value="8" (change) = "selectedItem($event)">
+        <label class="form-check-label" for="inlineRadio8">Informática</label>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <span (click)="addTema('producto')" class="btn btn-primary btn-xs">Crear Producto</span>
+      <br /><br />
+      <div class="table-responsive col-12">
+        <div class="jumbotron text-center" *ngIf = "fetching">
+          <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+        </div>
+        <table *ngIf = "!fetching" id="mytable" class="table table-bordred table-striped">
+          <thead>
+            <th>Id</th>
+            <th>Títulos</th>
+            <th>Descripciones</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of returnedArray">
+              <td>{{item.id}}</td>
+              <td>{{item.title}}</td>
+              <td *ngIf = "!item.description">No Description</td>
+              <td *ngIf = "item.description">{{item.description}}</td>
+              <td><span class="btn btn-primary btn-xs" (click)="editTema(item.id, item.title, item.description, 'producto')">
+                <i style="color: white;" class="p-2 fa fa-edit"></i></span></td>
+              <td><span class="btn btn-danger btn-xs" (click)="deleteTema(item.id, item.title, item.description, 'producto')">
+                <i style="color: white;" class="p-2 fa fa-trash"></i></span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-12">
+           <pagination [totalItems]="startList.length" [itemsPerPage] = "itemsPerPage"  (pageChanged)="pageChanged($event)"></pagination>
+          </div>
+          <div class="col-12">
+           <label for="location1" class="col-form-label">Elementos por Página</label>
+           <select class="form-control" (change)="selectedItemsPerPage($event)">
+             <option value="5">5</option>
+             <option value="10">10</option>
+             <option value="20">20</option>
+           </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <span (click)="addTema('servicio')" class="btn btn-primary btn-xs">Crear Servicio</span>
+      <br /><br />
+      <div class="table-responsive">
+        <div class="jumbotron text-center" *ngIf = "fetching2">
+          <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+        </div>
+        <table *ngIf = "!fetching2" id="mytable" class="table table-bordred table-striped">
+          <thead>
+            <th>Id</th>
+            <th>Títulos</th>
+            <th>Descripciones</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of returnedArray2">
+              <td>{{item.id}}</td>
+              <td>{{item.title}}</td>
+              <td *ngIf = "!item.description">No Description</td>
+              <td *ngIf = "item.description">{{item.description}}</td>
+              <td><span class="btn btn-primary btn-xs" (click)="editTema(item.id, item.title, item.description, 'servicio')">
+                <i style="color: white;" class="p-2 fa fa-edit"></i></span></td>
+              <td><span class="btn btn-danger btn-xs" (click)="deleteTema(item.id, item.title, item.description, 'servicio')">
+                <i style="color: white;" class="p-2 fa fa-trash"></i></span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-12">
+           <pagination [totalItems]="startList2.length" [itemsPerPage] = "itemsPerPage2"  (pageChanged)="pageChanged2($event)"></pagination>
+          </div>
+          <div class="col-12">
+           <label for="location1" class="col-form-label">Elementos por Página</label>
+           <select class="form-control" (change)="selectedItemsPerPage2($event)">
+             <option value="5">5</option>
+             <option value="10">10</option>
+             <option value="20">20</option>
+           </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <span (click)="addTema('entrenamiento')" class="btn btn-primary btn-xs">Crear Entrenamiento</span>
+      <br /><br />
+      <div class="table-responsive">
+        <div class="jumbotron text-center" *ngIf = "fetching3">
+          <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+        </div>
+        <table *ngIf = "!fetching3" id="mytable" class="table table-bordred table-striped">
+          <thead>
+            <th>Id</th>
+            <th>Títulos</th>
+            <th>Descripciones</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of returnedArray3">
+              <td>{{item.id}}</td>
+              <td>{{item.title}}</td>
+              <td *ngIf = "!item.description">No Description</td>
+              <td *ngIf = "item.description">{{item.description}}</td>
+              <td><span class="btn btn-primary btn-xs" (click)="editTema(item.id, item.title, item.description,'entrenamiento')">
+                <i style="color: white;" class="p-2 fa fa-edit"></i></span></td>
+              <td><span class="btn btn-danger btn-xs" (click)="deleteTema(item.id, item.title, item.description, 'entrenamiento')">
+                <i style="color: white;" class="p-2 fa fa-trash"></i></span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-12">
+           <pagination [totalItems]="startList3.length" [itemsPerPage] = "itemsPerPage3"  (pageChanged)="pageChanged3($event)"></pagination>
+          </div>
+          <div class="col-12">
+           <label for="location1" class="col-form-label">Elementos por Página</label>
+           <select class="form-control" (change)="selectedItemsPerPage3($event)">
+             <option value="5">5</option>
+             <option value="10">10</option>
+             <option value="20">20</option>
+           </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

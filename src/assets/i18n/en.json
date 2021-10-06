@@ -1,0 +1,25 @@
+{
+  "demo.title": "Translation demo",
+  "demo.text": "This is a simple demonstration app for ngx-translate",
+
+  "navList.tema1":"Economy-Finances",
+  "navList.tema2":"Human Resources and Organizational Development",
+  "navList.tema3":"Business Improvement",
+  "navList.tema4":"Technological Development and Managment System",
+  "navList.tema5":"Managment Development",
+  "navList.tema6":"Business Communication",
+  "navList.tema7":"IT Secutity",
+  "navList.tema8":"Informatics",
+
+  "navBar.home":"Home",
+  "navBar.who":"Who we are?",
+  "navBar.theme":"Theme",
+  "navBar.contact":"Contacts",
+    "navBar.theme.ligth":"Ligth",
+    "navBar.theme.dark":"Dark",
+    "navBar.theme.blue":"Blue",
+
+  "dashboard.slider":"Sliders",
+  "dashboard.graph":"Graphs",
+  "dashboard.continue":"And so mush more..."
+}

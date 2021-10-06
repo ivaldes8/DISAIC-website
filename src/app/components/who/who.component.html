@@ -1,0 +1,71 @@
+<div class="row">
+  <div *ngIf = "fetching" class="jumbotron text-center col-12">
+    <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+  </div>
+  <div *ngIf = "!fetching" class="col-12">
+      <carousel [isAnimated]="true">
+        <ng-container *ngFor = "let item of startList">
+          <slide>
+            <img src="{{imgUrl}}/{{item.image}}" class="img-fluid" alt="first slide" data-aos="flip-left">
+          </slide>
+        </ng-container>
+      </carousel>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+
+<div class="row">
+  <div *ngIf = "fetching2" class="jumbotron text-center col-12">
+    <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+  </div>
+  <div *ngIf = "!fetching2" class="col-12">
+        <ng-container *ngFor = "let item of startList2">
+            <h5 data-aos="fade-right" class="text-center">{{item.description}}</h5>
+        </ng-container>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+
+<div class="row">
+  <div *ngIf = "fetching3" class="jumbotron text-center col-12">
+    <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+  </div>
+  <div *ngIf = "!fetching3" class="col-12">
+      <carousel [isAnimated]="true">
+        <ng-container *ngFor = "let item of startList3">
+          <slide>
+            <img src="{{imgUrl}}/{{item.image}}" class="img-fluid" alt="first slide" data-aos="flip-right">
+          </slide>
+        </ng-container>
+      </carousel>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="row" *ngIf = "!fetching4">
+    <div class="col-12">
+      <div class="card text-center bg-light">
+        <h2 class="mt-2" style="color: cornflowerblue;" data-aos="fade-right">Eventos:</h2>
+      </div>
+    </div>
+    <br>
+    <div  class="col-12">
+      <carousel [isAnimated]="true">
+        <ng-container *ngFor = "let item of startList4">
+          <slide>
+            <img src="{{imgUrl}}/{{item.image}}" class="img-fluid" alt="first slide" data-aos="flip-left">
+          </slide>
+        </ng-container>
+      </carousel>
+    </div>
+</div>
+<br>
+<br>

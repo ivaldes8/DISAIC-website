@@ -1,0 +1,72 @@
+<div class="row">
+  <div *ngIf = "fetching4" class="jumbotron text-center col-12">
+    <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+  </div>
+  <div *ngIf = "!fetching4" class="col-12">
+      <carousel [isAnimated]="true">
+        <ng-container *ngFor = "let item of startList4">
+          <slide>
+            <img src="{{imgUrl}}/{{item.image}}" class="img-fluid" alt="first slide" >
+          </slide>
+        </ng-container>
+      </carousel>
+  </div>
+</div>
+
+<br>
+
+<div class="container">
+  <div class="jumbotron text-center col-12 bg-light">
+    <h2 style="color: cornflowerblue;">Economía-Finanzas</h2>
+  </div>
+  <div *ngIf = "fetching" class="jumbotron text-center col-12">
+    <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+  </div>
+  <div *ngIf = "!noData" class="row">
+    <div *ngIf = "!fetching" class="card text-center col-12 mb-3">
+      <h3 class="mt-2">Productos:</h3>
+    </div>
+    <div class="col-12" *ngFor = "let item of startList">
+      <h5><i style="color: cornflowerblue;" class="fa fa-square mr-2"></i>{{item.title}}</h5>
+      <h6 class="ml-4">{{item.description}}</h6>
+    </div>
+  </div>
+</div>
+<br *ngIf = "!noData">
+<hr *ngIf = "!noData">
+<br *ngIf = "!noData">
+<div class="container">
+  <div *ngIf = "fetching2" class="jumbotron text-center col-12">
+    <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+  </div>
+  <div *ngIf = "!noData2" class="row">
+    <div *ngIf = "!fetching2" class="card text-center col-12 mb-3">
+      <h3 class="mt-2">Servicios:</h3>
+    </div>
+    <div class="col-12" *ngFor = "let item of startList2">
+      <h5><i style="color: cornflowerblue;" class="fa fa-square mr-2"></i>{{item.title}}</h5>
+      <h6 class="ml-4">{{item.description}}</h6>
+    </div>
+  </div>
+</div>
+<br *ngIf = "!noData2">
+<hr *ngIf = "!noData2">
+<br *ngIf = "!noData2">
+<div class="container">
+  <div *ngIf = "fetching3" class="jumbotron text-center col-12">
+    <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+  </div>
+  <div *ngIf = "!noData3" class="row">
+    <div *ngIf = "!fetching3" class="card text-center col-12 mb-3">
+      <h3 class="mt-2">Entrenamientos:</h3>
+    </div>
+    <div class="col-12" *ngFor = "let item of startList3">
+      <h5><i style="color: cornflowerblue;" class="fa fa-square mr-2"></i>{{item.title}}</h5>
+      <h6 class="ml-4">{{item.description}}</h6>
+    </div>
+  </div>
+</div>
+<div *ngIf = "noData && noData2 && noData3" class="jumbotron text-center">
+  <h1>No hay datos sobre este Tema</h1>
+</div>
+<br>

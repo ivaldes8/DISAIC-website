@@ -1,0 +1,27 @@
+<br>
+<div class="row">
+  <div class="col-12 col-md-6">
+    <form action="" #authForm = "ngForm" (ngSubmit) = "onSubmit(authForm)" *ngIf = "!fetching">
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input type="email" id="email" class="form-control" ngModel name="email" required email>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control"  ngModel name="password" required minlength = "6">
+      </div>
+
+      <div>
+        <button class="btn btn-primary" type="submit" [disabled] = "!authForm.valid">{{isLoginMode ? 'Login' : 'Sign Up'}}</button> |
+        <button class="btn btn-primary" type="button" (click) = "onSwitchMode()">Switch to {{isLoginMode ? 'Sign Up' : 'Login'}}</button>
+      </div>
+    </form>
+  </div>
+</div>
+<br>
+
+
+<div class="jumbotron text-center col-12" *ngIf = "fetching">
+  <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+</div>

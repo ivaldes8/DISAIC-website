@@ -1,0 +1,175 @@
+<div class="wrapper">
+
+  <nav id="sidebar" class="{{ customClass }} bg-gradient">
+
+    <div class="sidebar-header">
+        <h3><img style="width: 100%;" src="./assets/logotipodisaic.png" alt=""></h3>
+        <strong class="text-center"><img style= "width:50%;" src="./assets/logooficial.png" alt=""></strong>
+    </div>
+    <perfect-scrollbar [scrollIndicators]="true" style="max-width: 600px; max-height: 600px;">
+      <ul class="list-unstyled components">
+          <li class="active">
+              <ul class="list-unstyled">
+                <li><a id = "item" class="list-group-item list-group-item-action bg-transparent" routerLink = '1' routerLinkActive = 'active'><i class="p-2 fa fa-bank faa-wrench animated-hover"></i>{{ 'navList.tema1' | translate }}</a></li>
+                <li><a id = "item" class="list-group-item list-group-item-action bg-transparent" routerLink = '2' routerLinkActive = 'active'><i class="p-2 fa fa-group faa-wrench animated-hover"></i>{{ 'navList.tema2' | translate }}</a></li>
+                <li><a id = "item" class="list-group-item list-group-item-action bg-transparent" routerLink = '3' routerLinkActive = 'active'><i class="p-2 fa fa-black-tie faa-wrench animated-hover"></i>{{ 'navList.tema3' | translate }}</a></li>
+                <li><a id = "item" class="list-group-item list-group-item-action bg-transparent" routerLink = '4' routerLinkActive = 'active'><i class="p-2 fa fa-street-view faa-wrench animated-hover"></i>{{ 'navList.tema4' | translate }}</a></li>
+                <li><a id = "item" class="list-group-item list-group-item-action bg-transparent" routerLink = '5' routerLinkActive = 'active'><i class="p-2 fa fa-briefcase faa-wrench animated-hover"></i>{{ 'navList.tema5' | translate }}</a></li>
+                <li><a id = "item" class="list-group-item list-group-item-action bg-transparent" routerLink = '6' routerLinkActive = 'active'><i class="p-2 fa fa-bullhorn faa-wrench animated-hover"></i>{{ 'navList.tema6' | translate }}</a></li>
+                <li><a id = "item" class="list-group-item list-group-item-action bg-transparent" routerLink = '7' routerLinkActive = 'active'><i class="p-2 fa fa-key faa-wrench animated-hover"></i>{{ 'navList.tema7' | translate }}</a></li>
+                <li><a id = "item" class="list-group-item list-group-item-action bg-transparent" routerLink = '8' routerLinkActive = 'active'><i class="p-2 fa fa-microchip faa-wrench animated-hover"></i>{{ 'navList.tema8' | translate }}</a></li>
+                <br><br>
+                <br><br>
+              </ul>
+          </li>
+      </ul>
+    </perfect-scrollbar>
+  </nav>
+
+  <div id="content" class="{{ customClass }}">
+      <nav class="navbar navbar-expand-lg sticky-top bg-gradient">
+          <button class="btn btn-primary active" (click) = "toggle()"><i style="color: white;" class="p-2 fa fa-align-left faa-wrench animated-hover"></i></button>
+          <button class="navbar-toggler btn btn-primary active" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+            <i style="color: white;" class="p-2 fa fa-bars faa-wrench animated-hover"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" id="item2" routerLink = "inicio" routerLinkActive = "active"><i class="p-2 fa fa-home faa-wrench animated-hover"></i>{{ 'navBar.home' | translate }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="item2" routerLink = "who" routerLinkActive = "active"><i class="p-2 fa fa-question-circle faa-wrench animated-hover"></i>{{ 'navBar.who' | translate }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="item2" routerLink = "contact" routerLinkActive = "active"><i class="p-2 fa fa-address-card faa-wrench animated-hover"></i>{{ 'navBar.contact' | translate }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="item2" href="http://www.cursos.disaic.cu/"><i class="p-2 fa fa-mortar-board faa-wrench animated-hover"></i>Entrenamientos Online</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="item2" routerLink = "admin" routerLinkActive = "active" *ngIf = "isAuthenticated"><i class="p-2 fa fa-wrench faa-wrench animated-hover"></i>Administrar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="item2"  *ngIf = "isAuthenticated" (click) = "onLogout()"><i class="p-2 fa fa-sign-out faa-wrench animated-hover"></i>Cerrar Sesión</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <div class="input-group">
+                  <input  [(ngModel)]="searchText" autocomplete="off" placeholder="Buscar...">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text bg-primary rounded">
+                      <i style="color: white;" class="fa fa-search faa-wrench animated-hover"></i>
+                    </div>
+                  </div>
+                </div>
+            </ul>
+
+           <!-- <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link active"><i style="color: white;" class="p-2 fa fa-language faa-wrench animated-hover"></i></a>
+              </li>
+              <li class="nav-item">
+                <select class="form-control" (change)="selectedLanguage($event)">
+                  <option value="es">Español</option>
+                  <option value="en">English</option>
+                </select>
+              </li>
+            </ul>-->
+          </div>
+        </nav>
+
+        <div class="container" *ngIf = "searchText !== ''">
+          <div class="row card">
+            <table class="table table-striped">
+              <h3 class="bg-light ml-3">Productos:</h3>
+              <tbody>
+              <tr *ngFor="let item of startList | filter:searchText">
+                <td><h5>{{item.title}}</h5></td>
+                <td><p>{{item.description}}</p></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br *ngIf = "searchText !== ''">
+        <br *ngIf = "searchText !== ''">
+        <div class="container" *ngIf = "searchText !== ''">
+          <div class="row card">
+            <table class="table table-striped">
+              <h3 class="bg-light ml-3">Servicios:</h3>
+              <tbody>
+              <tr *ngFor="let item of startList2 | filter:searchText">
+                <td><h5>{{item.title}}</h5></td>
+                <td><p>{{item.description}}</p></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br *ngIf = "searchText !== ''">
+        <br *ngIf = "searchText !== ''">
+        <div class="container" *ngIf = "searchText !== ''">
+          <div class="row card">
+            <table class="table table-striped">
+              <h3 class="bg-light ml-3">Entrenamientos:</h3>
+              <tbody>
+              <tr *ngFor="let item of startList3 | filter:searchText">
+                <td><h5>{{item.title}}</h5></td>
+                <td><p>{{item.description}}</p></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br *ngIf = "searchText !== ''">
+        <br *ngIf = "searchText !== ''">
+        <div id="firstBG"></div>
+        <div id="secondBG"></div>
+        <div class="container">
+          <router-outlet></router-outlet>
+        </div>
+
+        <ngx-scrolltop
+          [backgroundColor]="'rgba(1, 22, 112, 0.5)'"
+          [symbolColor]="'#fafafa'"
+          [size]="40"
+          [mode]="'classic'"
+          position="right"
+          theme="gray">
+        </ngx-scrolltop>
+
+        <footer  class="bg-gradient">
+          <div class="text-white p-3 title">
+            <div class="row">
+                <div class="col-12 col-md-6 col-xl-6">
+                    <h5 class="pl-3">Contactos:</h5>
+                    <p class="pl-3 content"><i class="fa fa-map-marker fa-2x"></i> Calzada de Buenos Aires No. 100 esq. Leonor, Cerro, La Habana, Cuba.</p>
+                    <p class="pl-3 content"><i class="fa fa-phone-square fa-2x"></i> (53) 7 870 9215</p>
+                    <p class="pl-3 content"><i class="fa fa-envelope-square fa-2x"></i> disaic@disaic.cu</p>
+                    <a href="https://es-la.facebook.com/disaic/" class="pl-3 content"><i class="fa fa-facebook-official fa-2x"></i> Facebook</a>
+                </div>
+                <div class="col-12 col-md-6 col-xl-6">
+                    <div class="row bg-disaic-blue shadow">
+                        <div class="col-3">
+                            <a class="nav-link" href="https://www.sime.cu/es"><img class="img-fluid" src="./assets/4.png" alt=""></a>
+                        </div>
+                        <div class="col-3">
+                            <a class="nav-link" href="https://www.mindus.gob.cu/es"><img class="img-fluid" src="./assets/2.png" alt=""></a>
+                        </div>
+                        <div class="col-3">
+                          <a class="nav-link" href="http://www.cubadebate.cu/"><img class="img-fluid" src="./assets/1.png" alt=""></a>
+                        </div>
+                        <div class="col-3">
+                          <a class="nav-link" href="https://www.presidencia.gob.cu/es/"><img class="img-fluid" src="./assets/3.png" alt=""></a>
+                        </div>
+                    </div>
+                    <p style="padding-top: 10%;" class="copyrigth text-center">© CopyRight 2021.</p>
+                    <p class="text-center">Todos los derechos reservados para Casa Consultora DISAIC</p>
+                </div>
+            </div>
+          </div>
+        </footer>
+  </div>
+</div>
