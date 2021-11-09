@@ -50,6 +50,9 @@ export class EditImageComponent implements OnInit {
     if(this.gestionar == "carouselTema"){
       this.url = "temaUpdate";
     }
+    if(this.gestionar == "promoUICI"){
+      this.url = "promoUICIUpdate";
+    }
   }
 
   onEditImageSubmit() {

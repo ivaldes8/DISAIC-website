@@ -46,6 +46,9 @@ export class AddImageComponent implements OnInit {
     if(this.gestionar == "carouselTema"){
       this.url = "temaRegister";
     }
+    if(this.gestionar == "promoUICI"){
+      this.url = "promoUICIRegister";
+    }
     //console.log(this.url)
   }
 

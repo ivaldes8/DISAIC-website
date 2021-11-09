@@ -41,6 +41,9 @@ export class DeleteImageComponent implements OnInit {
     if(this.gestionar == "carouselTema"){
       this.url = "temaDelete";
     }
+    if(this.gestionar == "promoUICI"){
+      this.url = "promoUICIDelete";
+    }
   }
 
   deleteClient(id){

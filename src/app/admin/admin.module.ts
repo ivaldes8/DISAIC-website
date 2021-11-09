@@ -25,6 +25,7 @@ import { CarouselTeamaComponent } from './tema/carousel-teama/carousel-teama.com
 import { AddTemaComponent } from './tema/add-tema/add-tema.component';
 import { DeleteTemaComponent } from './tema/delete-tema/delete-tema.component';
 import { EditTemaComponent } from './tema/edit-tema/edit-tema.component';
+import { UiciComponent } from './uici/uici.component';
 
 
 @NgModule({

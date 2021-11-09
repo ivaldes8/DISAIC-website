@@ -15,6 +15,7 @@ import { Component6Component } from './component6/component6.component';
 import { Component7Component } from './component7/component7.component';
 import { Component8Component } from './component8/component8.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { UiciComponent } from './uici/uici.component';
 import { WhoComponent } from './who/who.component';
 import { ContactsComponent } from './contacts/contacts.component';
 
@@ -32,7 +33,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     Component8Component,
     InicioComponent,
     WhoComponent,
-    ContactsComponent
+    ContactsComponent,
+    UiciComponent
   ],
   imports: [
     CommonModule,

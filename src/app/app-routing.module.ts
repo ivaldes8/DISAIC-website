@@ -19,11 +19,16 @@ import { TemaComponent } from './admin/tema/tema.component';
 import { WhoWeAreComponent } from './admin/who-we-are/who-we-are.component';
 import { ContactsAdminComponent } from './admin/contacts-admin/contacts-admin.component';
 import { CarouselTeamaComponent } from './admin/tema/carousel-teama/carousel-teama.component';
+import { UiciComponent } from './components/uici/uici.component';
 
 const routes: Routes = [
   {
     path:'',
     component: InicioComponent
+  },
+  {
+    path:'uici',
+    component: UiciComponent
   },
   {
     path:'inicio',

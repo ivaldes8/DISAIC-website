@@ -39,10 +39,10 @@ export class AppComponent implements OnInit, OnDestroy {
               private themeService: ThemeService,
               private authService: AuthService,
               private swUpdate: SwUpdate,
-              private cardService: CardService
+              private cardService: CardService,
     ){
-    this.firstBG = document.getElementById('firstBG') as HTMLElement;
-    this.secondBG = document.getElementById('secondBG') as HTMLElement;
+     this.firstBG = document.getElementById('firstBG') as HTMLElement;
+     this.secondBG = document.getElementById('secondBG') as HTMLElement;
     document.addEventListener('scroll', function() {
       const value = window.scrollY;
       firstBG.style.top = value * 1 + 'px';
@@ -152,27 +152,27 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
   // tslint:disable-next-line:typedef
-  shoot() {
-    try {
-        this.confetti({
-          angle: this.random(60, 120),
-          spread: this.random(20, 60),
-          particleCount: this.random(300, 400),
-          origin: {
-              y: 0.6
-          }
-      });
-    } catch (e) {
-        // noop, confettijs may not be loaded yet
-    }
-  }
+  // shoot() {
+  //   try {
+  //       this.confetti({
+  //         angle: this.random(60, 120),
+  //         spread: this.random(20, 60),
+  //         particleCount: this.random(300, 400),
+  //         origin: {
+  //             y: 0.6
+  //         }
+  //     });
+  //   } catch (e) {
+  //       // noop, confettijs may not be loaded yet
+  //   }
+  // }
 
   // tslint:disable-next-line:typedef
   random(min: number, max: number) {
       return Math.random() * (max - min) + min;
   }
 
-  /*confetti(args: any) {
-      return window.confetti.apply(this, arguments);
-  }*/
+  // confetti(args: any) {
+  //     return window.confetti.apply(this, arguments);
+  // }
 }
