@@ -1,0 +1,38 @@
+<div role="document">
+  <div>
+    <form class="form-horizontal" id="add-form" [formGroup]="userForm" (ngSubmit)="onEditUserSubmit()">
+      <div class="modal-header">
+        <h4 class="modal-title" id="add-modal-label">Editar Elemento</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Nombre</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Correo</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="email" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Rol</label>
+          <div class="col-sm-10">
+            <select class="form-control" name="role" aria-label="Default select example" formControlName = "role">
+              <option value="0">Admin</option>
+              <option value="1">Especialista</option>
+              <option value="2">Cliente</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onClose()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" [disabled] = "userForm.invalid">Editar</button>
+      </div>
+    </form>
+  </div>
+</div>

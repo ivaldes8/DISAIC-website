@@ -3,11 +3,11 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { CardService } from '../../../services/card.service';
 
 @Component({
-  selector: 'app-delete-card',
-  templateUrl: './delete-card.component.html',
-  styleUrls: ['./delete-card.component.css']
+  selector: 'app-delete-card-pdf',
+  templateUrl: './delete-card-pdf.component.html',
+  styleUrls: ['./delete-card-pdf.component.css']
 })
-export class DeleteCardComponent implements OnInit {
+export class DeleteCardPdfComponent implements OnInit {
 
   id: number;
   title: string;
@@ -20,23 +20,8 @@ export class DeleteCardComponent implements OnInit {
   constructor(private bsModalRef: BsModalRef, private cardService:CardService) { }
 
   ngOnInit(): void {
-    if(this.delete == "theme"){
-      this.url = "inicioThemeDelete"
-    }
-    if(this.delete == "sell"){
-      this.url = "inicioOnSellDelete"
-    }
-    if(this.delete == "why"){
-      this.url = "inicioWhyDelete"
-    }
-    if(this.delete == "textWho"){
-      this.url = "nosotroTextDelete"
-    }
-    if(this.delete== "contactsContact"){
-      this.url = "contactoCardDelete"
-    }
-    if(this.delete == "promoCard"){
-      this.url = "promoCardUICIDelete"
+    if(this.delete == "boletinCard"){
+      this.url = "boletinUICIDelete"
     }
   }
 

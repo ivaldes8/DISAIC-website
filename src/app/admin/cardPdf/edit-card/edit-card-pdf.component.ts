@@ -5,24 +5,27 @@ import { CardService } from '../../../services/card.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-edit-card',
-  templateUrl: './edit-card.component.html',
-  styleUrls: ['./edit-card.component.css']
+  selector: 'app-edit-card-pdf',
+  templateUrl: './edit-card-pdf.component.html',
+  styleUrls: ['./edit-card-pdf.component.css']
 })
-export class EditCardComponent implements OnInit {
+export class EditCardPdfComponent implements OnInit {
 
   editCardForm: FormGroup;
   id: number;
   title: string;
   description:string;
   image:string;
+  pdf:string;
   url:string;
   postData: any;
   edit:string;
   event: EventEmitter<any> = new EventEmitter();
   obj = new FormData();
   selectedImage : File;
+  selectedPdf : File;
   imgUrl = environment.API_DISAIC_IMG_URL;
+  pdfUrl = environment.API_DISAIC_PDF_URL;
 
   constructor(private cardService: CardService,private bsModalRef: BsModalRef) { }
 
@@ -34,23 +37,8 @@ export class EditCardComponent implements OnInit {
     this.editCardForm.controls['titulo'].setValue(this.title);
     this.editCardForm.controls['descripcion'].setValue(this.description);
 
-    if(this.edit == "theme"){
-      this.url = "inicioThemeUpdate"
-    }
-    if(this.edit == "sell"){
-      this.url = "inicioOnSellUpdate"
-    }
-    if(this.edit == "why"){
-      this.url = "inicioWhyUpdate"
-    }
-    if(this.edit == "textWho"){
-      this.url = "nosotroTextUpdate"
-    }
-    if(this.edit== "contactsContact"){
-      this.url = "contactoCardUpdate"
-    }
-    if(this.edit == "promoCard"){
-      this.url = "promoCardUICIUpdate"
+    if(this.edit == "boletinCard"){
+      this.url = "boletinUICIUpdate"
     }
   }
 
@@ -58,8 +46,11 @@ export class EditCardComponent implements OnInit {
     this.selectedImage = <File>e.target.files[0];
   }
 
-  onEditFormSubmit() {
+  fileEventPdf(e){
+    this.selectedPdf = <File>e.target.files[0];
+  }
 
+  onEditFormSubmit() {
     this.obj.append('title',this.editCardForm.controls.titulo.value);
     //console.log(this.editTemaForm.controls.descripcion.value)
     if (this.editCardForm.controls.descripcion.value != null) {
@@ -68,6 +59,9 @@ export class EditCardComponent implements OnInit {
     }
     if (this.selectedImage != undefined) {
       this.obj.append('image', this.selectedImage, this.selectedImage.name)
+    }
+    if (this.selectedPdf != undefined) {
+      this.obj.append('pdf', this.selectedPdf, this.selectedPdf.name)
     }
     this.cardService.updateCard(this.obj,this.url,this.id).subscribe(data => {
         this.event.emit('OK');

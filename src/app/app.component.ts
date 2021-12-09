@@ -45,11 +45,11 @@ export class AppComponent implements OnInit, OnDestroy {
      this.secondBG = document.getElementById('secondBG') as HTMLElement;
     document.addEventListener('scroll', function() {
       const value = window.scrollY;
-      firstBG.style.top = value * 1 + 'px';
-      firstBG.style.right = value * 1 + 'px';
+      // firstBG.style.top = value * 1 + 'px';
+      // firstBG.style.right = value * 1 + 'px';
 
-      secondBG.style.top = value * 0.25 + 'px';
-      secondBG.style.right = value * 1.5 + 'px';
+      // secondBG.style.top = value * 0.25 + 'px';
+      // secondBG.style.right = value * 1.5 + 'px';
 
     });
     translate.setDefaultLang('es');

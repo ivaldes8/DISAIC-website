@@ -3,9 +3,13 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
-// import { AddCardComponent } from "../card/add-card/add-card.component";
-// import { DeleteCardComponent } from "../card/delete-card/delete-card.component";
-// import { EditCardComponent } from "../card/edit-card/edit-card.component"
+import { AddCardComponent } from "../card/add-card/add-card.component";
+import { DeleteCardComponent } from "../card/delete-card/delete-card.component";
+import { EditCardComponent } from "../card/edit-card/edit-card.component"
+
+import { AddCardPdfComponent } from "../cardPdf/add-card/add-card-pdf.component";
+import { DeleteCardPdfComponent } from "../cardPdf/delete-card/delete-card-pdf.component";
+import { EditCardPdfComponent } from "../cardPdf/edit-card/edit-card-pdf.component"
 
 import { AddImageComponent } from "../image/add-image/add-image.component";
 import { DeleteImageComponent } from "../image/delete-image/delete-image.component";
@@ -19,7 +23,7 @@ import { CardService } from 'src/app/services/card.service';
   templateUrl: './uici.component.html',
   styleUrls: ['./uici.component.css']
 })
-export class UiciComponent implements OnInit {
+export class UiciAdminComponent implements OnInit {
 
   bsModalRef: BsModalRef;
 
@@ -29,17 +33,17 @@ export class UiciComponent implements OnInit {
   endItem = 5;
   fetching = false;
 
-  // currentPage2 = 1;
-  // itemsPerPage2 = 5;
-  // startItem2 = 0;
-  // endItem2 = 5;
-  // fetching2 = false;
+  currentPage2 = 1;
+  itemsPerPage2 = 5;
+  startItem2 = 0;
+  endItem2 = 5;
+  fetching2 = false;
 
-  // currentPage3 = 1;
-  // itemsPerPage3 = 5;
-  // startItem3 = 0;
-  // endItem3 = 5;
-  // fetching3 = false;
+  currentPage3 = 1;
+  itemsPerPage3 = 5;
+  startItem3 = 0;
+  endItem3 = 5;
+  fetching3 = false;
 
   // currentPage4 = 1;
   // itemsPerPage4 = 5;
@@ -56,11 +60,11 @@ export class UiciComponent implements OnInit {
   startList: any[] = [];
   returnedArray: any[] = [];
 
-  // startList2: any[] = [];
-  // returnedArray2: any[] = [];
+  startList2: any[] = [];
+  returnedArray2: any[] = [];
 
-  // startList3: any[] = [];
-  // returnedArray3: any[] = [];
+  startList3: any[] = [];
+  returnedArray3: any[] = [];
 
   // startList4: any[] = [];
   // returnedArray4: any[] = [];
@@ -69,12 +73,13 @@ export class UiciComponent implements OnInit {
   // returnedArray5: any[] = [];
 
   url = "getPromoUICI";
-  // url2 = "inicioThemesList";
-  // url3 = "inicioOnSellList";
+  url2 = "getPromoCardUICI";
+  url3 = "getBoletinUICI";
   // url4 = "inicioWhyList";
   // url5 = "getInicioClients";
 
   imgUrl = environment.API_DISAIC_IMG_URL;
+  pdfUrl = environment.API_DISAIC_PDF_URL;
 
   constructor(private bsModalService: BsModalService,
      private toast: ToastrService,
@@ -84,8 +89,8 @@ export class UiciComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchFirstCarousel();
-    // this.fetchThemes();
-    // this.fetchShells();
+    this.fetchPromoCards();
+    this.fetchBoletines();
     // this.fetchWhys();
     // this.fetchClients();
   }
@@ -104,39 +109,41 @@ fetchFirstCarousel(){
   });
 }
 
-//themes logic------------------------------------------------------------------------------------
+//PromoCard logic------------------------------------------------------------------------------------
 
-// fetchThemes(){
-//   this.fetching2 = true;
-//     this.cardService.getCards(this.url2).subscribe(data => {
-//       Object.assign(this.startList2, data);
-//       this.returnedArray2 = this.startList2.slice(0,this.itemsPerPage2)
-//       this.fetching2 = false;
-//       if(this.returnedArray2.length == 0){
-//         this.fetching2 = true;
-//       }
-//     }, error => {
-//       console.log("themesAdmin",error);
-//       this.toast.error("Error while getting themes admin data")
-//     });
-// }
+fetchPromoCards(){
+  this.fetching2 = true;
+    this.cardService.getCards(this.url2).subscribe(data => {
+      Object.assign(this.startList2, data);
+      this.returnedArray2 = this.startList2.slice(0,this.itemsPerPage2)
+      this.fetching2 = false;
+      if(this.returnedArray2.length == 0){
+        this.fetching2 = true;
+      }
+    }, error => {
+      console.log("promoCardAdmin",error);
+      this.toast.error("Error while getting themes admin data")
+    });
+}
 
-//On shell Products logic-------------------------------------------------------------------------
+//Boletin logic-------------------------------------------------------------------------
 
-// fetchShells(){
-//   this.fetching3 = true;
-//   this.cardService.getCards(this.url3).subscribe(data => {
-//     Object.assign(this.startList3, data);
-//     this.returnedArray3 = this.startList3.slice(0,this.itemsPerPage3)
-//     this.fetching3 = false;
-//     if(this.returnedArray3.length == 0){
-//       this.fetching3 = true;
-//     }
-//   }, error => {
-//     console.log("onShellAdmin",error);
-//     this.toast.error("Error while getting onShells admin data")
-//   });
-// }
+fetchBoletines(){
+  console.log('FETCHINGBOLETIN')
+  this.fetching3 = true;
+  this.cardService.getCards(this.url3).subscribe(data => {
+    Object.assign(this.startList3, data);
+    this.returnedArray3 = this.startList3.slice(0,this.itemsPerPage3)
+    this.fetching3 = false;
+    if(this.returnedArray3.length == 0){
+      this.fetching3 = true;
+    }
+  }, error => {
+    console.log("BoletinAdmin",error);
+    this.toast.error("Error while getting Boletin admin data")
+  });
+  console.log(this.returnedArray3,'RETURNEDARRAY3')
+}
 
 //why os logic-------------------------------------------------------------------------------------
 
@@ -243,93 +250,137 @@ editImage(id: number, image:string, edit: string){
 
 //CRUD CARD LOGIC------------------------------------------------------------------------------------
 
-// addCard(add:string){
-//   //console.log(add)
-//   let initialState = {
-//     add:add
-//   };
-//   this.bsModalRef = this.bsModalService.show(AddCardComponent,{initialState:initialState});
-//   this.bsModalRef.content.event.subscribe(result => {
-//     this.fetching2 = true;
-//     this.fetching3 = true;
-//     this.fetching4 = true;
-//     if (result == 'OK') {
-//       setTimeout(() => {
-//         this.startList2 = [];
-//         this.startList4 = [];
-//         this.startList3 = [];
-//         this.fetchThemes();
-//         this.fetchShells();
-//         this.fetchWhys();
-//         this.fetching2 = false;
-//         this.fetching4 = false;
-//         this.fetching3 = false;
-//       }, 5000);
-//     }
-//   });
-// }
+addCard(add:string){
+  //console.log(add)
+  let initialState = {
+    add:add
+  };
+  this.bsModalRef = this.bsModalService.show(AddCardComponent,{initialState:initialState});
+  this.bsModalRef.content.event.subscribe(result => {
+    this.fetching2 = true;
+    if (result == 'OK') {
+      setTimeout(() => {
+        this.startList2 = [];
+        this.fetchPromoCards();
+        this.fetching2 = false;
+      }, 5000);
+    }
+  });
+}
 
-// deleteCard(id: number, title: string, description: string, del: string){
-//   let initialState = {
-//     delete: del
-//   };
-//   this.bsModalRef = this.bsModalService.show(DeleteCardComponent,{initialState:initialState});
-//   this.bsModalRef.content.id = id;
-//   this.bsModalRef.content.title = title;
-//   this.bsModalRef.content.description = description;
-//   this.bsModalRef.content.event.subscribe(result => {
-//     this.fetching2 = true;
-//     this.fetching4 = true;
-//     this.fetching3 = true;
-//     if (result == 'OK') {
-//       setTimeout(() => {
-//         this.startList2 = [];
-//         this.startList4 = [];
-//         this.startList3 = [];
-//         this.fetchThemes();
-//         this.fetchShells();
-//         this.fetchWhys();
-//         this.fetching2 = false;
-//         this.fetching4 = false;
-//         this.fetching3 = false;
-//       }, 5000);
-//     }
-//   });
-// }
+deleteCard(id: number, title: string, description: string, del: string){
+  let initialState = {
+    delete: del
+  };
+  this.bsModalRef = this.bsModalService.show(DeleteCardComponent,{initialState:initialState});
+  this.bsModalRef.content.id = id;
+  this.bsModalRef.content.title = title;
+  this.bsModalRef.content.description = description;
+  this.bsModalRef.content.event.subscribe(result => {
+    this.fetching2 = true;
+    if (result == 'OK') {
+      setTimeout(() => {
+        this.startList2 = [];
+        this.fetchPromoCards();
+        this.fetching2 = false;
+      }, 5000);
+    }
+  });
+}
 
-// editCard(id: number, title: string, description: string, image:string, edit:string){
-//   //console.log(id,title,title,description,image,edit,"1")
-//   let initialState = {
-//     title: title,
-//     description: description,
-//     id: id,
-//     image:image,
-//     edit: edit
-//   };
-//   this.bsModalRef = this.bsModalService.show(EditCardComponent,{initialState:initialState});
-//   this.bsModalRef.content.id = id;
-//   this.bsModalRef.content.title = title;
-//   this.bsModalRef.content.description = description;
-//   this.bsModalRef.content.image = image;
-//   this.bsModalRef.content.event.subscribe(result => {
-//     this.fetching2 = true;
-//     this.fetching4 = true;
-//     this.fetching3 = true;
-//     if (result == 'OK') {
-//       setTimeout(() => {
-//         this.startList2 = [];
-//         this.startList4 = [];
-//         this.startList3 = [];
-//         this.fetchThemes();
-//         this.fetchShells();
-//         this.fetchWhys();
-//         this.fetching2 = false;
-//         this.fetching4 = false;
-//         this.fetching3 = false;
-//       }, 5000);
-//     }
-//   });
-// }
+editCard(id: number, title: string, description: string, image:string, edit:string){
+  //console.log(id,title,title,description,image,edit,"1")
+  let initialState = {
+    title: title,
+    description: description,
+    id: id,
+    image:image,
+    edit: edit
+  };
+  this.bsModalRef = this.bsModalService.show(EditCardComponent,{initialState:initialState});
+  this.bsModalRef.content.id = id;
+  this.bsModalRef.content.title = title;
+  this.bsModalRef.content.description = description;
+  this.bsModalRef.content.image = image;
+  this.bsModalRef.content.event.subscribe(result => {
+    this.fetching2 = true;
+    if (result == 'OK') {
+      setTimeout(() => {
+        this.startList2 = [];
+        this.fetchPromoCards();
+        this.fetching2 = false;
+      }, 5000);
+    }
+  });
+}
+
+//CRUD CARD PDF LOGIC------------------------------------------------------------------------------------
+
+  addCardPdf(add:string){
+    //console.log(add)
+    let initialState = {
+      add:add
+    };
+    this.bsModalRef = this.bsModalService.show(AddCardPdfComponent,{initialState:initialState});
+    this.bsModalRef.content.event.subscribe(result => {
+      this.fetching3 = true;
+      if (result == 'OK') {
+        setTimeout(() => {
+          this.startList3 = [];
+          this.fetchBoletines();
+          this.fetching3 = false;
+        }, 5000);
+      }
+    });
+  }
+
+  deleteCardPdf(id: number, title: string, description: string, del: string){
+    let initialState = {
+      delete: del
+    };
+    this.bsModalRef = this.bsModalService.show(DeleteCardPdfComponent,{initialState:initialState});
+    this.bsModalRef.content.id = id;
+    this.bsModalRef.content.title = title;
+    this.bsModalRef.content.description = description;
+    this.bsModalRef.content.event.subscribe(result => {
+      this.fetching3 = true;
+      if (result == 'OK') {
+        setTimeout(() => {
+          this.startList3 = [];
+          this.fetchBoletines()
+          this.fetching3 = false;
+        }, 5000);
+      }
+    });
+  }
+
+  editCardPdf(id: number, title: string, description: string, image:string,pdf: string, edit:string ){
+    //console.log(id,title,title,description,image,edit,"1")
+    let initialState = {
+      title: title,
+      description: description,
+      id: id,
+      image:image,
+      pdf: pdf,
+      edit: edit
+    };
+    this.bsModalRef = this.bsModalService.show(EditCardPdfComponent,{initialState:initialState});
+    this.bsModalRef.content.id = id;
+    this.bsModalRef.content.title = title;
+    this.bsModalRef.content.description = description;
+    this.bsModalRef.content.image = image;
+    this.bsModalRef.content.pdf = pdf;
+    this.bsModalRef.content.event.subscribe(result => {
+      this.fetching3 = true;
+      if (result == 'OK') {
+        setTimeout(() => {
+          this.startList3 = [];
+          this.fetchBoletines();
+          this.fetching3 = false;
+        }, 5000);
+      }
+    });
+  }
 
 //tables logic------------------------------------------------------------------------------------------------------
 
@@ -346,31 +397,31 @@ this.returnedArray = [];
 this.fetchFirstCarousel();
 }
 
-// pageChanged2(event:PageChangedEvent):void {
-//   const startItem = (event.page - 1) * event.itemsPerPage;
-//   const endItem = event.page * event.itemsPerPage;
-//   this.returnedArray2 = this.startList2.slice(startItem,endItem);
-// }
+pageChanged2(event:PageChangedEvent):void {
+  const startItem = (event.page - 1) * event.itemsPerPage;
+  const endItem = event.page * event.itemsPerPage;
+  this.returnedArray2 = this.startList2.slice(startItem,endItem);
+}
 
-// selectedItemsPerPage2(event){
-// this.itemsPerPage2 = event.target.value;
-// this.startList2 = [];
-// this.returnedArray2 = [];
-// this.fetchThemes();
-// }
+selectedItemsPerPage2(event){
+this.itemsPerPage2 = event.target.value;
+this.startList2 = [];
+this.returnedArray2 = [];
+this.fetchPromoCards();
+}
 
-// pageChanged3(event:PageChangedEvent):void {
-//   const startItem = (event.page - 1) * event.itemsPerPage;
-//   const endItem = event.page * event.itemsPerPage;
-//   this.returnedArray3 = this.startList3.slice(startItem,endItem);
-// }
+pageChanged3(event:PageChangedEvent):void {
+  const startItem = (event.page - 1) * event.itemsPerPage;
+  const endItem = event.page * event.itemsPerPage;
+  this.returnedArray3 = this.startList3.slice(startItem,endItem);
+}
 
-// selectedItemsPerPage3(event){
-// this.itemsPerPage3 = event.target.value;
-// this.startList3 = [];
-// this.returnedArray3 = [];
-// this.fetchShells();
-// }
+selectedItemsPerPage3(event){
+this.itemsPerPage3 = event.target.value;
+this.startList3 = [];
+this.returnedArray3 = [];
+this.fetchBoletines();
+}
 
 // pageChanged4(event:PageChangedEvent):void {
 //   const startItem = (event.page - 1) * event.itemsPerPage;

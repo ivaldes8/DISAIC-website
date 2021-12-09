@@ -1,0 +1,44 @@
+<div role="document">
+  <div>
+    <form class="form-horizontal" [formGroup] = "userForm">
+      <div class="modal-header">
+        <h4 class="modal-title" id="add-modal-label">Añadir Usuario</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Nombre</label>
+          <div class="col-sm-10">
+            <input type="text" name="name" class="form-control" formControlName = "name"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Correo</label>
+          <div class="col-sm-10">
+            <input type="text" name="email" class="form-control" formControlName = "email"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Rol</label>
+          <div class="col-sm-10">
+            <select class="form-control" name="role" aria-label="Default select example" formControlName = "role">
+              <option value="0">Admin</option>
+              <option value="1">Especialista</option>
+              <option value="2">Cliente</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" name="password" class="form-control" formControlName = "password"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onClose()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" [disabled] = "userForm.invalid" (click) = "onUserFormSubmit()">Crear</button>
+      </div>
+    </form>
+  </div>
+</div>

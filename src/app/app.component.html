@@ -44,18 +44,23 @@
                 <a class="nav-link" id="item2" routerLink = "contact" routerLinkActive = "active"><i class="p-2 fa fa-address-card faa-wrench animated-hover"></i>{{ 'navBar.contact' | translate }}</a>
               </li>
               <li class="nav-item dropdown" dropdown>
-                <a class="nav-link dropdown-toggle" routerLink = "uici" routerLinkActive = "active" id="navbardrop" data-toggle="dropdown" dropdownToggle>
+                <a class="nav-link dropdown-toggle" routerLinkActive = "active" id="navbardrop" data-toggle="dropdown" dropdownToggle>
                   <i class="p-2 fa fa-grav faa-wrench animated-hover"></i>UICI
                 </a>
                 <div class="dropdown-menu" *dropdownMenu>
-                  <a routerLink = "auth" routerLinkActive = "active" class="dropdown-item">Entrar</a>
-                  <a class="dropdown-item" >Link 2</a>
-                  <a class="dropdown-item" >Link 3</a>
+                  <a routerLink = "uici" routerLinkActive = "active" class="dropdown-item"><i class="p-2 fa fa-search-plus faa-wrench animated-hover"></i>UICI</a>
+                  <a routerLink = "boletines" routerLinkActive = "active" class="dropdown-item"><i class="p-2 fa fa-newspaper-o faa-wrench animated-hover"></i>Boletines de Noticias</a>
+                  <a routerLink = "boletines" routerLinkActive = "active" class="dropdown-item"><i class="p-2 fa fa-bar-chart faa-wrench animated-hover"></i>Informes</a>
+                  <a routerLink = "boletines" routerLinkActive = "active" class="dropdown-item"><i class="p-2 fa fa-gift faa-wrench animated-hover"></i>Mis Informes</a>
+                  <a href = "http://www.cursos.disaic.cu" class="dropdown-item" ><i class="p-2 fa fa-graduation-cap faa-wrench animated-hover"></i>Plataforma de Entrenamientos</a>
                 </div>
               </li>
                 <!-- <a class="nav-link" id="item2" href="http://www.cursos.disaic.cu/"><i class="p-2 fa fa-mortar-board faa-wrench animated-hover"></i>UICI</a> -->
               <li class="nav-item">
                 <a class="nav-link" id="item2" routerLink = "admin" routerLinkActive = "active" *ngIf = "isAuthenticated"><i class="p-2 fa fa-wrench faa-wrench animated-hover"></i>Administrar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" *ngIf = "!isAuthenticated" id="item2" routerLink = "auth" routerLinkActive = "active"><i class="p-2 fa fa-wrench faa-wrench animated-hover"></i>Entrar</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="item2"  *ngIf = "isAuthenticated" (click) = "onLogout()"><i class="p-2 fa fa-sign-out faa-wrench animated-hover"></i>Cerrar Sesión</a>

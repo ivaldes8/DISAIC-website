@@ -4,15 +4,16 @@ import { CardService } from '../../../services/card.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'app-add-card',
-  templateUrl: './add-card.component.html',
-  styleUrls: ['./add-card.component.css']
+  selector: 'app-add-card-pdf',
+  templateUrl: './add-card-pdf.component.html',
+  styleUrls: ['./add-card-pdf.component.css']
 })
-export class AddCardComponent implements OnInit {
+export class AddCardPdfComponent implements OnInit {
 
   cardForm:FormGroup;
   event: EventEmitter<any>=new EventEmitter();
   selectedImage: File;
+  selectedPdf: File;
   add:string;
   url:string;
   obj = new FormData();
@@ -25,23 +26,8 @@ export class AddCardComponent implements OnInit {
       descripcion: new FormControl(null),
     });
 
-      if(this.add == "theme"){
-        this.url = "inicioThemeRegister"
-      }
-      if(this.add == "sell"){
-        this.url = "inicioOnSellRegister"
-      }
-      if(this.add == "why"){
-        this.url = "inicioWhyRegister"
-      }
-      if(this.add == "textWho"){
-        this.url = "nosotroTextRegister"
-      }
-      if(this.add == "contactsContact"){
-        this.url = "contactoCardRegister"
-      }
-      if(this.add == "promoCard"){
-        this.url = "promoCardUICIRegister"
+      if(this.add == "boletinCard"){
+        this.url = "boletinUICIRegister"
       }
   }
 
@@ -56,6 +42,9 @@ export class AddCardComponent implements OnInit {
     if (this.selectedImage != undefined) {
       this.obj.append('image', this.selectedImage, this.selectedImage.name)
     }
+    if (this.selectedPdf != undefined) {
+      this.obj.append('pdf', this.selectedPdf, this.selectedPdf.name)
+    }
 
   this.cardService.postCard(this.obj,this.url).subscribe(data=>{
     if(data!=null){
@@ -67,6 +56,10 @@ export class AddCardComponent implements OnInit {
 
 fileEvent(e){
   this.selectedImage = <File>e.target.files[0];
+}
+
+fileEventPdf(e){
+  this.selectedPdf = <File>e.target.files[0];
 }
 
 onClose(){

@@ -15,19 +15,19 @@ import * as AOS from 'aos';
 export class UiciComponent implements OnInit {
 
   fetching = false;
-  // fetching2 = false;
+  fetching2 = false;
   // fetching3 = false;
   // fetching4 = false;
   // fetching5 = false;
 
   startList : [] = []
-  // startList2 : [] = []
+  startList2 : [] = []
   // startList3 : [] = []
   // startList4 : [] = []
   // startList5 : [] = []
 
   url = "getPromoUICI";
-  // url2 = "inicioThemesList";
+  url2 = "getPromoCardUICI";
   // url4 = "inicioOnSellList";
   // url3 = "inicioWhyList";
   // url5 = "getInicioClients";
@@ -41,6 +41,7 @@ export class UiciComponent implements OnInit {
   ngOnInit(): void {
     AOS.init();
     this.fetchPromo();
+    this.fetchPromoCard();
     // this.fetchTemas();
     // this.fetchWhys();
     // this.fetchOnShells();
@@ -58,21 +59,21 @@ export class UiciComponent implements OnInit {
       });
   }
 
-  // fetchTemas(){
-  //   this.fetching2 = true;
-  //   if(this.url2 != ""){
-  //     this.temaService.getCards(this.url2).subscribe(data => {
-  //       Object.assign(this.startList2, data);
-  //       this.fetching2 = false;
-  //       if(this.startList2.length == 0){
-  //         this.fetching2 = true;
-  //       }
-  //     }, error => {
-  //       console.log("Temas", error);
-  //       this.toast.error("Error while getting temas data")
-  //     });
-  //   }
-  // }
+  fetchPromoCard(){
+    this.fetching2 = true;
+    if(this.url2 != ""){
+      this.temaService.getCards(this.url2).subscribe(data => {
+        Object.assign(this.startList2, data);
+        this.fetching2 = false;
+        if(this.startList2.length == 0){
+          this.fetching2 = true;
+        }
+      }, error => {
+        console.log("Promo Cards", error);
+        this.toast.error("Error while getting temas data")
+      });
+    }
+  }
 
   // fetchOnShells(){
   //   this.fetching4 = true;

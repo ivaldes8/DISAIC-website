@@ -25,11 +25,22 @@ import { CarouselTeamaComponent } from './tema/carousel-teama/carousel-teama.com
 import { AddTemaComponent } from './tema/add-tema/add-tema.component';
 import { DeleteTemaComponent } from './tema/delete-tema/delete-tema.component';
 import { EditTemaComponent } from './tema/edit-tema/edit-tema.component';
-import { UiciComponent } from './uici/uici.component';
+import { UiciAdminComponent } from './uici/uici.component';
+import { EditCardPdfComponent } from './cardPdf/edit-card/edit-card-pdf.component';
+import { DeleteCardPdfComponent } from './cardPdf/delete-card/delete-card-pdf.component';
+import { AddCardPdfComponent } from './cardPdf/add-card/add-card-pdf.component';
+import { UsersAdminComponent } from './users-admin/users-admin.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { DeleteUserComponent } from './user/delete-user/delete-user.component';
 
 
 @NgModule({
   declarations: [
+    AddCardPdfComponent,
+    EditCardPdfComponent,
+    DeleteCardPdfComponent,
+    UiciAdminComponent,
     MainAdminComponent,
     HomeComponent,
     AddCardComponent,
@@ -44,7 +55,11 @@ import { UiciComponent } from './uici/uici.component';
     TemaComponent,
     ContactsAdminComponent,
     WhoWeAreComponent,
-    CarouselTeamaComponent
+    CarouselTeamaComponent,
+    UsersAdminComponent,
+    AddUserComponent,
+    EditUserComponent,
+    DeleteUserComponent
   ],
   imports: [
     CommonModule,
