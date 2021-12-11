@@ -5,11 +5,28 @@
       <div class="form-group">
         <label for="email">E-Mail</label>
         <input type="email" id="email" class="form-control" ngModel name="email" required email>
+        <div *ngIf="authForm.controls['email'].invalid && (authForm.controls['email'].dirty || authForm.controls['email'].touched)" class="alert alert-danger">
+            <div *ngIf="authForm.controls['email'].errors.required">
+              <p>El nombre es obligatorio</p>
+            </div>
+            <div *ngIf="authForm.controls['email'].errors.email">
+              <p>Tiene que escribir una dirección de correo válida</p>
+            </div>
+        </div>
       </div>
+
 
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" id="password" class="form-control"  ngModel name="password" required minlength = "6">
+        <div *ngIf="authForm.controls['password'].invalid && (authForm.controls['password'].dirty || authForm.controls['password'].touched)" class="alert alert-danger">
+            <div *ngIf="authForm.controls['password'].errors.required">
+              <p>Tiene que escribir una su contraseña</p>
+            </div>
+            <div *ngIf="authForm.controls['password'].errors.minlength">
+              <p>La contraseña debe tener al menos 6 caracteres</p>
+            </div>
+        </div>
       </div>
 
       <div>

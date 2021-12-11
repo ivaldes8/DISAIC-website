@@ -11,6 +11,10 @@ import { AddCardPdfComponent } from "../cardPdf/add-card/add-card-pdf.component"
 import { DeleteCardPdfComponent } from "../cardPdf/delete-card/delete-card-pdf.component";
 import { EditCardPdfComponent } from "../cardPdf/edit-card/edit-card-pdf.component"
 
+import { AddInformeComponent } from "../cardInforme/add-informe/add-informe.component";
+import { DeleteInformeComponent } from "../cardInforme/delete-informe/delete-informe.component";
+import { EditInformeComponent } from "../cardInforme/edit-informe/edit-informe.component"
+
 import { AddImageComponent } from "../image/add-image/add-image.component";
 import { DeleteImageComponent } from "../image/delete-image/delete-image.component";
 import { EditImageComponent } from "../image/edit-image/edit-image.component";
@@ -45,11 +49,11 @@ export class UiciAdminComponent implements OnInit {
   endItem3 = 5;
   fetching3 = false;
 
-  // currentPage4 = 1;
-  // itemsPerPage4 = 5;
-  // startItem4 = 0;
-  // endItem4 = 5;
-  // fetching4 = false;
+  currentPage4 = 1;
+  itemsPerPage4 = 5;
+  startItem4 = 0;
+  endItem4 = 5;
+  fetching4 = false;
 
   // currentPage5 = 1;
   // itemsPerPage5 = 5;
@@ -66,17 +70,14 @@ export class UiciAdminComponent implements OnInit {
   startList3: any[] = [];
   returnedArray3: any[] = [];
 
-  // startList4: any[] = [];
-  // returnedArray4: any[] = [];
-
-  // startList5: any[] = [];
-  // returnedArray5: any[] = [];
+  startList4: any[] = [];
+  returnedArray4: any[] = [];
 
   url = "getPromoUICI";
   url2 = "getPromoCardUICI";
   url3 = "getBoletinUICI";
-  // url4 = "inicioWhyList";
-  // url5 = "getInicioClients";
+  url4 = "getInformes";
+
 
   imgUrl = environment.API_DISAIC_IMG_URL;
   pdfUrl = environment.API_DISAIC_PDF_URL;
@@ -91,7 +92,7 @@ export class UiciAdminComponent implements OnInit {
     this.fetchFirstCarousel();
     this.fetchPromoCards();
     this.fetchBoletines();
-    // this.fetchWhys();
+    this.fetchInformesPublicos();
     // this.fetchClients();
   }
 
@@ -129,7 +130,6 @@ fetchPromoCards(){
 //Boletin logic-------------------------------------------------------------------------
 
 fetchBoletines(){
-  console.log('FETCHINGBOLETIN')
   this.fetching3 = true;
   this.cardService.getCards(this.url3).subscribe(data => {
     Object.assign(this.startList3, data);
@@ -142,39 +142,25 @@ fetchBoletines(){
     console.log("BoletinAdmin",error);
     this.toast.error("Error while getting Boletin admin data")
   });
-  console.log(this.returnedArray3,'RETURNEDARRAY3')
 }
 
-//why os logic-------------------------------------------------------------------------------------
+//fetcInformesPublicos logic-------------------------------------------------------------------------------------
 
-// fetchWhys(){
-//   this.fetching4 = true;
-//   this.cardService.getCards(this.url4).subscribe(data => {
-//     Object.assign(this.startList4, data);
-//     this.returnedArray4 = this.startList4.slice(0,this.itemsPerPage4)
-//     this.fetching4 = false;
-//     if(this.returnedArray4.length == 0){
-//       this.fetching4 = true;
-//     }
-//   }, error => {
-//     console.log("WhyAdmin",error);
-//     this.toast.error("Error while getting Why admin data")
-//   });
-// }
+fetchInformesPublicos(){
+  this.fetching4 = true;
+  this.cardService.getCards(this.url4).subscribe(data => {
+    Object.assign(this.startList4, data);
+    this.returnedArray4 = this.startList4.slice(0,this.itemsPerPage4)
+    this.fetching4 = false;
+    if(this.returnedArray4.length == 0){
+      this.fetching4 = true;
+    }
+  }, error => {
+    console.log("WhyAdmin",error);
+    this.toast.error("Error while getting Why admin data")
+  });
+}
 
-//clients images logic-----------------------------------------------------------------------------
-
-// fetchClients(){
-//   this.fetching5 = true;
-//     this.imageService.getSlide(this.url5).subscribe(data => {
-//       Object.assign(this.startList5, data);
-//       this.returnedArray5 = this.startList5.slice(0,this.itemsPerPage5)
-//       this.fetching5 = false
-//     }, error => {
-//       console.log("fetchClientsAdmin", error)
-//       this.toast.error("Error while getting fetchClients data admin")
-//     });
-// }
 
 //CRUD IMAGE LOGIC-----------------------------------------------------------------------------
 
@@ -314,6 +300,76 @@ editCard(id: number, title: string, description: string, image:string, edit:stri
   });
 }
 
+//CRUD Informe publico LOGIC------------------------------------------------------------------------------------
+
+  addInforme(add:string){
+    //console.log(add)
+    let initialState = {
+      add:add
+    };
+    this.bsModalRef = this.bsModalService.show(AddInformeComponent,{initialState:initialState});
+    this.bsModalRef.content.event.subscribe(result => {
+      this.fetching4 = true;
+      if (result == 'OK') {
+        setTimeout(() => {
+          this.startList4 = [];
+          this.fetchInformesPublicos();
+          this.fetching4 = false;
+        }, 5000);
+      }
+    });
+  }
+
+  deleteInforme(id: number, title: string, description: string, del: string){
+    let initialState = {
+      delete: del
+    };
+    this.bsModalRef = this.bsModalService.show(DeleteInformeComponent,{initialState:initialState});
+    this.bsModalRef.content.id = id;
+    this.bsModalRef.content.title = title;
+    this.bsModalRef.content.description = description;
+    this.bsModalRef.content.event.subscribe(result => {
+      this.fetching4 = true;
+      if (result == 'OK') {
+        setTimeout(() => {
+          this.startList4 = [];
+          this.fetchInformesPublicos();
+          this.fetching4 = false;
+        }, 5000)
+      }
+    });
+  }
+
+  editInforme(id: number, title: string, description: string, image:string,pdf: string,isPublic: Boolean, edit:string ){
+    //console.log(id,title,title,description,image,edit,"1")
+    let initialState = {
+      title: title,
+      description: description,
+      id: id,
+      image:image,
+      pdf: pdf,
+      isPublic: isPublic,
+      edit: edit
+    };
+    this.bsModalRef = this.bsModalService.show(EditInformeComponent,{initialState:initialState});
+    this.bsModalRef.content.id = id;
+    this.bsModalRef.content.title = title;
+    this.bsModalRef.content.description = description;
+    this.bsModalRef.content.image = image;
+    this.bsModalRef.content.pdf = pdf;
+    this.bsModalRef.content.isPublic = isPublic;
+    this.bsModalRef.content.event.subscribe(result => {
+      this.fetching4 = true;
+      if (result == 'OK') {
+        setTimeout(() => {
+          this.startList4 = [];
+          this.fetchInformesPublicos();
+          this.fetching4 = false;
+        }, 5000);
+      }
+    });
+  }
+
 //CRUD CARD PDF LOGIC------------------------------------------------------------------------------------
 
   addCardPdf(add:string){
@@ -423,18 +479,18 @@ this.returnedArray3 = [];
 this.fetchBoletines();
 }
 
-// pageChanged4(event:PageChangedEvent):void {
-//   const startItem = (event.page - 1) * event.itemsPerPage;
-//   const endItem = event.page * event.itemsPerPage;
-//   this.returnedArray4 = this.startList4.slice(startItem,endItem);
-// }
+pageChanged4(event:PageChangedEvent):void {
+  const startItem = (event.page - 1) * event.itemsPerPage;
+  const endItem = event.page * event.itemsPerPage;
+  this.returnedArray4 = this.startList4.slice(startItem,endItem);
+}
 
-// selectedItemsPerPage4(event){
-// this.itemsPerPage4 = event.target.value;
-// this.startList4 = [];
-// this.returnedArray4 = [];
-// this.fetchWhys();
-// }
+selectedItemsPerPage4(event){
+this.itemsPerPage4 = event.target.value;
+this.startList4 = [];
+this.returnedArray4 = [];
+this.fetchInformesPublicos();
+}
 
 // pageChanged5(event:PageChangedEvent):void {
 //   const startItem = (event.page - 1) * event.itemsPerPage;

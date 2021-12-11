@@ -152,3 +152,62 @@
     </div>
   </div>
 </div>
+
+<br>
+<hr>
+<br>
+
+<div class="row">
+  <div class="col-12">
+    <span (click) = "addInforme('informe')" class="btn btn-primary btn-xs">Crear Informe</span>
+    <br /><br />
+    <div class="table-responsive">
+      <div class="jumbotron text-center" *ngIf = "fetching4">
+        <i style="color: blue;" class="p-2 fa fa-spinner animated faa-spin fa-4x"></i>
+      </div>
+      <table *ngIf = "!fetching4" id="mytable" class="table table-bordred table-striped">
+        <thead>
+          <th>Id</th>
+          <th>Títulos</th>
+          <th>Descripciones</th>
+          <th>Imagenes</th>
+          <th>PDF</th>
+          <th>Publico</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of returnedArray4">
+            <td>{{item.id}}</td>
+            <td>{{ item.title }}</td>
+            <td *ngIf = "!item.description">No Description</td>
+            <td *ngIf = "item.description">{{item.description}}</td>
+            <td *ngIf = "!item.image">No Image</td>
+            <td *ngIf = "item.image"><img src="{{imgUrl}}/{{item.image}}" class="fluid-img" style="width: 40%;" alt=""></td>
+            <td *ngIf = "!item.pdf">No PDF</td>
+            <td *ngIf = "item.pdf"><a href="{{pdfUrl}}/{{item.pdf}}">Abrir</a></td>
+            <td>{{item.isPublic}}</td>
+            <td><span class="btn btn-primary btn-xs" (click)="editInforme(item.id,item.title, item.description, item.image, item.pdf , item.isPublic, 'informe')">
+              <i style="color: white;" class="fa fa-edit"></i></span></td>
+            <td><span class="btn btn-danger btn-xs" (click)="deleteInforme(item.id,item.title, item.description, 'informe')">
+              <i style="color: white;" class="fa fa-trash"></i>
+            </span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-12">
+        <pagination [totalItems]="startList4.length" [itemsPerPage] = "itemsPerPage4"  (pageChanged)="pageChanged4($event)"></pagination>
+        </div>
+        <div class="col-12">
+        <label for="location1" class="col-form-label">Elementos por Página</label>
+        <select class="form-control" (change)="selectedItemsPerPage4($event)">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

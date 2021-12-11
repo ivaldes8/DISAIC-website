@@ -33,6 +33,9 @@ import { UsersAdminComponent } from './users-admin/users-admin.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { DeleteUserComponent } from './user/delete-user/delete-user.component';
+import { AddInformeComponent } from './cardInforme/add-informe/add-informe.component';
+import { EditInformeComponent } from './cardInforme/edit-informe/edit-informe.component';
+import { DeleteInformeComponent } from './cardInforme/delete-informe/delete-informe.component';
 
 
 @NgModule({
@@ -59,7 +62,11 @@ import { DeleteUserComponent } from './user/delete-user/delete-user.component';
     UsersAdminComponent,
     AddUserComponent,
     EditUserComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    AddInformeComponent,
+    EditInformeComponent,
+    DeleteInformeComponent
+
   ],
   imports: [
     CommonModule,

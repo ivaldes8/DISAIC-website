@@ -10,12 +10,25 @@
           <label class="col-sm-2 control-label">Nombre</label>
           <div class="col-sm-10">
             <input type="text" name="name" class="form-control" formControlName = "name"/>
+            <div *ngIf="userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched)" class="alert alert-danger">
+                <div *ngIf="userForm.controls['name'].errors.required">
+                  <p>Tiene que escribir un nombre</p>
+                </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label">Correo</label>
           <div class="col-sm-10">
             <input type="text" name="email" class="form-control" formControlName = "email"/>
+            <div *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)" class="alert alert-danger">
+                <div *ngIf="userForm.controls['email'].errors.required">
+                  <p>Tiene que escribir un correo</p>
+                </div>
+                <div *ngIf="userForm.controls['email'].errors.email">
+                  <p>Tiene que escribir una dirección de correo válida</p>
+                </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -26,12 +39,33 @@
               <option value="1">Especialista</option>
               <option value="2">Cliente</option>
             </select>
+            <div *ngIf="userForm.controls['role'].invalid && (userForm.controls['role'].dirty || userForm.controls['role'].touched)" class="alert alert-danger">
+                <div *ngIf="userForm.controls['role'].errors.required">
+                  <p>Tiene que seleccionar un rol</p>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Productos</label>
+          <div class="col-sm-10">
+            <select  class="custom-select" id="basic" multiple="multiple" name="productos" formControlName = "productos">
+              <option *ngFor="let item of privateProducts" value="{{item.id}}">{{item.title}}</option>
+            </select>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label">Password</label>
           <div class="col-sm-10">
             <input type="password" name="password" class="form-control" formControlName = "password"/>
+            <div *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)" class="alert alert-danger">
+                <div *ngIf="userForm.controls['password'].errors.required">
+                  <p>Tiene que escribir una contraseña</p>
+                </div>
+                <div *ngIf="userForm.controls['password'].errors.minlength">
+                  <p>La contraseña debe tener al menos 6 caracteres</p>
+                </div>
+            </div>
           </div>
         </div>
       </div>

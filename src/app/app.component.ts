@@ -5,6 +5,7 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { ThemeService } from './services/theme.service';
 import { AuthService } from './auth/auth.service';
+import { UserService } from './services/user.service';
 import { SwUpdate } from '@angular/service-worker';
 import { CardService } from './services/card.service';
 
@@ -28,6 +29,8 @@ export class AppComponent implements OnInit, OnDestroy {
   startList2: [] = [];
   startList3: [] = [];
 
+  profile;
+  hideAdministration = false;
 
   isAuthenticated = false;
   private userSub: Subscription;
@@ -40,6 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private swUpdate: SwUpdate,
               private cardService: CardService,
+              private userService: UserService
     ){
      this.firstBG = document.getElementById('firstBG') as HTMLElement;
      this.secondBG = document.getElementById('secondBG') as HTMLElement;
@@ -56,7 +60,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   // tslint:disable-next-line:typedef
-  ngOnInit(){
+  async ngOnInit(){
+
+
     if (this.swUpdate.isEnabled) {
 
       this.swUpdate.available.subscribe(() => {
@@ -67,7 +73,7 @@ export class AppComponent implements OnInit, OnDestroy {
           }
       });
   }
-    this.authService.autoLogin();
+    await this.authService.autoLogin();
     this.userSub = this.authService.user.subscribe(
      user => {
       this.isAuthenticated = !!user;
@@ -75,7 +81,10 @@ export class AppComponent implements OnInit, OnDestroy {
       console.log(!!user);
      }
    );
-
+   this.profile = await this.userService.getProfile().toPromise();
+    if(this.isAuthenticated && this.profile.role > 1){
+      this.hideAdministration = true
+    }
     this.fetchProducts();
     this.fetchServices();
     this.fetchEntrenamientos();

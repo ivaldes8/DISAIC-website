@@ -55,7 +55,7 @@ export class AuthComponent implements OnInit {
       },
       error => {
         console.log(error)
-        this.error = 'An error ocurred'
+        this.error = 'Usuario o contraseña incorrectos'
         this.toastr.error(this.error);
         this.fetching = false;
       }

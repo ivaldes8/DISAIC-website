@@ -6,11 +6,11 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class InformeService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(url:string){
+  getInformes(url:string){
     const dinamicUrl = url;
     return this.http.get(`${environment.API_DISAIC_URL}/${dinamicUrl}`).pipe(
       map(responseData => {
@@ -25,7 +25,12 @@ export class UserService {
     )
    }
 
-   getProductosByUsers(id){
+   getPrivateProducts(){
+    const dinamicUrl = 'getPrivateProducts'
+    return this.http.get(`${environment.API_DISAIC_URL}/${dinamicUrl}`);
+   }
+
+   getPrivateProductsByUser(id){
     const dinamicUrl = 'getProductoByUser'
     return this.http.get(`${environment.API_DISAIC_URL}/${dinamicUrl}/${id}`);
    }
@@ -36,29 +41,5 @@ export class UserService {
     headers.append('Accept','application/json');
     const dinamicUrl = url;
    return this.http.post(`${environment.API_DISAIC_URL}/auth/${dinamicUrl}`,data, {headers:headers})
-  }
-
-  getProfile(){
-    const headers = new HttpHeaders();
-    headers.append('Content-Type','multipart/form-data');
-    headers.append('Accept','application/json');
-    const dinamicUrl = 'profile';
-    return this.http.get(`${environment.API_DISAIC_URL}/auth/${dinamicUrl}`, {headers:headers})
-  }
-
-  updateUser(data, url:string, id:number){
-    const headers = new HttpHeaders();
-    headers.append('Content-Type','multipart/form-data');
-    headers.append('Accept','application/json');
-    const dinamicUrl = url;
-     return this.http.post(`${environment.API_DISAIC_URL}/auth/${dinamicUrl}/${id}`,data, {headers:headers})
-  }
-
-  deleteUser(id:number, url:string){
-    const headers = new HttpHeaders();
-    headers.append('Content-Type','multipart/form-data');
-    headers.append('Accept','application/json');
-    const dinamicUrl = url;
-     return this.http.delete(`${environment.API_DISAIC_URL}/auth/${dinamicUrl}/${id}`, {headers:headers})
   }
 }

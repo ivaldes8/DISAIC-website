@@ -19,6 +19,8 @@ import { UiciComponent } from './uici/uici.component';
 import { WhoComponent } from './who/who.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { BoletinComponent } from './boletin/boletin.component';
+import { InformeComponent } from './informe/informe.component';
+import { InformePrivateComponent } from './informePrivate/informePrivate.component';
 
 
 
@@ -36,7 +38,9 @@ import { BoletinComponent } from './boletin/boletin.component';
     WhoComponent,
     ContactsComponent,
     UiciComponent,
-    BoletinComponent
+    BoletinComponent,
+    InformeComponent,
+    InformePrivateComponent
   ],
   imports: [
     CommonModule,

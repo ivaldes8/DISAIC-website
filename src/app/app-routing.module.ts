@@ -23,6 +23,8 @@ import { UiciComponent } from './components/uici/uici.component';
 import { BoletinComponent } from './components/boletin/boletin.component';
 import { UiciAdminComponent } from './admin/uici/uici.component';
 import { UsersAdminComponent } from './admin/users-admin/users-admin.component';
+import { InformeComponent } from './components/informe/informe.component';
+import { InformePrivateComponent } from './components/informePrivate/informePrivate.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,14 @@ const routes: Routes = [
   {
     path:'boletines',
     component: BoletinComponent
+  },
+  {
+    path:'informes',
+    component: InformeComponent
+  },
+  {
+    path:'misInformes',
+    component: InformePrivateComponent
   },
   {
     path:'inicio',
