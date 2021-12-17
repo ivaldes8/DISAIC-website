@@ -57,7 +57,7 @@
               </li>
                 <!-- <a class="nav-link" id="item2" href="http://www.cursos.disaic.cu/"><i class="p-2 fa fa-mortar-board faa-wrench animated-hover"></i>UICI</a> -->
               <li class="nav-item">
-                <a class="nav-link" id="item2" routerLink = "admin" routerLinkActive = "active" *ngIf = "isAuthenticated && !hideAdministration"><i class="p-2 fa fa-wrench faa-wrench animated-hover"></i>Administrar</a>
+                <a class="nav-link" id="item2" routerLink = "admin" routerLinkActive = "active" *ngIf = "isAuthenticated && isAdmin"><i class="p-2 fa fa-wrench faa-wrench animated-hover"></i>Administrar</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" *ngIf = "!isAuthenticated" id="item2" routerLink = "auth" routerLinkActive = "active"><i class="p-2 fa fa-wrench faa-wrench animated-hover"></i>Entrar</a>

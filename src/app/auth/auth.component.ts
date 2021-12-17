@@ -51,7 +51,7 @@ export class AuthComponent implements OnInit {
       resData => {
         console.log(resData);
         this.fetching = false;
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/inicio']);
       },
       error => {
         console.log(error)

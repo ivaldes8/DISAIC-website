@@ -5,7 +5,6 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { ThemeService } from './services/theme.service';
 import { AuthService } from './auth/auth.service';
-import { UserService } from './services/user.service';
 import { SwUpdate } from '@angular/service-worker';
 import { CardService } from './services/card.service';
 
@@ -29,11 +28,11 @@ export class AppComponent implements OnInit, OnDestroy {
   startList2: [] = [];
   startList3: [] = [];
 
-  profile;
-  hideAdministration = false;
+  isAdmin = false;
 
   isAuthenticated = false;
   private userSub: Subscription;
+  private userAdminSub: Subscription;
 
   public config: PerfectScrollbarConfigInterface = {};
   firstBG: HTMLElement;
@@ -42,8 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
               private themeService: ThemeService,
               private authService: AuthService,
               private swUpdate: SwUpdate,
-              private cardService: CardService,
-              private userService: UserService
+              private cardService: CardService
     ){
      this.firstBG = document.getElementById('firstBG') as HTMLElement;
      this.secondBG = document.getElementById('secondBG') as HTMLElement;
@@ -77,14 +75,17 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.user.subscribe(
      user => {
       this.isAuthenticated = !!user;
-      console.log(!user);
-      console.log(!!user);
      }
-   );
-   this.profile = await this.userService.getProfile().toPromise();
-    if(this.isAuthenticated && this.profile.role > 1){
-      this.hideAdministration = true
-    }
+    );
+    this.userAdminSub = this.authService.canAdmin.subscribe(
+      user => {
+       this.isAdmin = !!user;
+      }
+    );
+  //  this.profile = await this.userService.getProfile().toPromise();
+  //   if(this.isAuthenticated && this.profile.role > 1){
+  //     this.hideAdministration = true
+  //   }
     this.fetchProducts();
     this.fetchServices();
     this.fetchEntrenamientos();

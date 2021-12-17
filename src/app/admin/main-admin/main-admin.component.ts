@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-main-admin',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-admin.component.css']
 })
 export class MainAdminComponent implements OnInit {
+  profile = null;
+  showUsers = false;
+  constructor(private userService: UserService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.profile = await this.userService.getProfile().toPromise();
+    if(this.profile.role < 1){
+      this.showUsers = true
+    }
   }
 
 }

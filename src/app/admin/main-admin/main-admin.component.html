@@ -6,7 +6,7 @@
     <button class="col-2 btn btn-primary mr-2" routerLink = "whoAdmin" routerLinkActive = "bg-danger">Quiénes somos?</button>
     <button class="col-2 btn btn-primary mr-2" routerLink = "contactAdmin" routerLinkActive = "bg-danger">Contactos</button>
     <button class="col-2 btn btn-primary mr-2" routerLink = "uiciAdmin" routerLinkActive = "bg-danger">UICI</button>
-    <button class="col-2 btn btn-primary" routerLink = "userAdmin" routerLinkActive = "bg-danger">USUARIOS</button>
+    <button class="col-2 btn btn-primary" *ngIf = "showUsers" routerLink = "userAdmin" routerLinkActive = "bg-danger">USUARIOS</button>
   </div>
   <div class="col-12">
     <br>
