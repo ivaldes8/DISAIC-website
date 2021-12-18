@@ -12,7 +12,7 @@ export class UserService {
 
   getUsers(url:string){
     const dinamicUrl = url;
-    return this.http.get(`${environment.API_DISAIC_URL}/${dinamicUrl}`).pipe(
+    return this.http.get(`${environment.API_DISAIC_URL}/auth/${dinamicUrl}`).pipe(
       map(responseData => {
         const temaArray: any[] = [];
         for ( const key in responseData){
@@ -26,7 +26,7 @@ export class UserService {
    }
 
    getProductosByUsers(id){
-    const dinamicUrl = 'getProductoByUser'
+    const dinamicUrl = 'auth/getProductoByUser'
     return this.http.get(`${environment.API_DISAIC_URL}/${dinamicUrl}/${id}`);
    }
 

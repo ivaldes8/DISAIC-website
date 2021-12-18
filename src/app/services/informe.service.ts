@@ -26,12 +26,12 @@ export class InformeService {
    }
 
    getPrivateProducts(){
-    const dinamicUrl = 'getPrivateProducts'
+    const dinamicUrl = 'auth/getPrivateProducts'
     return this.http.get(`${environment.API_DISAIC_URL}/${dinamicUrl}`);
    }
 
    getPrivateProductsByUser(id){
-    const dinamicUrl = 'getProductoByUser'
+    const dinamicUrl = 'auth/getProductoByUser'
     return this.http.get(`${environment.API_DISAIC_URL}/${dinamicUrl}/${id}`);
    }
 
