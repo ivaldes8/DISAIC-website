@@ -19,33 +19,11 @@ import { TemaComponent } from './admin/tema/tema.component';
 import { WhoWeAreComponent } from './admin/who-we-are/who-we-are.component';
 import { ContactsAdminComponent } from './admin/contacts-admin/contacts-admin.component';
 import { CarouselTeamaComponent } from './admin/tema/carousel-teama/carousel-teama.component';
-import { UiciComponent } from './components/uici/uici.component';
-import { BoletinComponent } from './components/boletin/boletin.component';
-import { UiciAdminComponent } from './admin/uici/uici.component';
-import { UsersAdminComponent } from './admin/users-admin/users-admin.component';
-import { InformeComponent } from './components/informe/informe.component';
-import { InformePrivateComponent } from './components/informePrivate/informePrivate.component';
 
 const routes: Routes = [
   {
     path:'',
     component: InicioComponent
-  },
-  {
-    path:'uici',
-    component: UiciComponent
-  },
-  {
-    path:'boletines',
-    component: BoletinComponent
-  },
-  {
-    path:'informes',
-    component: InformeComponent
-  },
-  {
-    path:'misInformes',
-    component: InformePrivateComponent
   },
   {
     path:'inicio',
@@ -101,10 +79,6 @@ const routes: Routes = [
     component: MainAdminComponent,
     children:[
       {
-          path:'userAdmin',
-          component: UsersAdminComponent
-      },
-      {
         path:'homeAdmin',
         component: HomeComponent
       },
@@ -115,10 +89,6 @@ const routes: Routes = [
       {
         path:'contactAdmin',
         component: ContactsAdminComponent
-      },
-      {
-        path:'uiciAdmin',
-        component: UiciAdminComponent
       },
       {
         path:'temaAdmin',

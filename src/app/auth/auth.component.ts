@@ -54,9 +54,9 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['/inicio']);
       },
       error => {
-        console.log(error)
+        console.log(error,'ERROR')
         this.error = 'Usuario o contraseña incorrectos'
-        this.toastr.error(this.error);
+        this.toastr.error(error.error.error);
         this.fetching = false;
       }
     );

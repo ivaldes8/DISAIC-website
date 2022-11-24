@@ -4,13 +4,21 @@
 
 export const environment = {
   production: false,
-  API_DISAIC_URL: 'http://127.0.0.1/api',
-  API_DISAIC_IMG_URL: 'http://127.0.0.1/storage/images',
-  API_DISAIC_PDF_URL: 'http://127.0.0.1/storage/pdfs',
+  API_DISAIC_URL: 'http://127.0.0.1:8000/api',
+  API_DISAIC_IMG_URL: 'http://127.0.0.1:8000/storage/images',
+  API_DISAIC_PDF_URL: 'http://127.0.0.1:8000/storage/pdfs',
   API_DISAIC_IMG_URL2: 'http://127.0.0.1/appBackend/storage/images/',
   API_testing_URL:'http://127.0.0.1/appBackend/public/api',
   OTHER: 'http://192.168.137.1/appBackend/public/api',
   OTHER2: 'http://127.0.0.1:8000/api'
+
+  // API_DISAIC_URL: 'http://127.0.0.1/api',
+  // API_DISAIC_IMG_URL: 'http://127.0.0.1/storage/images',
+  // API_DISAIC_PDF_URL: 'http://127.0.0.1/storage/pdfs',
+  // API_DISAIC_IMG_URL2: 'http://127.0.0.1/appBackend/storage/images/',
+  // API_testing_URL:'http://127.0.0.1/appBackend/public/api',
+  // OTHER: 'http://192.168.137.1/appBackend/public/api',
+  // OTHER2: 'http://127.0.0.1:8000/api'
 
   // API_DISAIC_URL: 'http://127.0.0.1/appBackend/public/api',
   // API_DISAIC_IMG_URL: 'http://127.0.0.1/appBackend/public/storage/images',

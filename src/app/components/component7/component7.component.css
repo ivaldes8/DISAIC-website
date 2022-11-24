@@ -1,0 +1,40 @@
+#mainHeader{
+  box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+  background-color: transparent;
+}
+
+#mainHeader h2{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(60,123,214,1) 0%, rgba(253,253,255,1) 100%, rgba(60,151,214,1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -1px;
+  top: -8px;
+}
+
+#mainHeader h2:nth-child(2){
+ border-radius: 10px;
+ color: linear-gradient(90deg, rgba(60,123,214,1) 0%, rgba(253,253,255,1) 100%, rgba(60,151,214,1) 100%);
+ background: white;
+ overflow: hidden;
+ z-index: 2;
+ transition: 0.5s;
+ clip-path: polygon(50% 0, 100% 0%, 100% 100%, 50% 100%, 40% 53%);
+ margin-left: -1px;
+ top: -8px;
+}
+
+#mainHeader h2:nth-child(2):hover{
+  clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%, 0% 50%);
+}
+
+#mainHeader h2:nth-child(1):hover ~ h2:nth-child(2){
+  clip-path: polygon(100% 0, 100% 0%, 100% 100%, 100% 100%, 100% 50%);
+}
