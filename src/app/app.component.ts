@@ -8,6 +8,10 @@ import { AuthService } from './auth/auth.service';
 import { SwUpdate } from '@angular/service-worker';
 import { CardService } from './services/card.service';
 
+declare global {
+  interface Window { confetti: any; }
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,6 +19,7 @@ import { CardService } from './services/card.service';
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 export class AppComponent implements OnInit, OnDestroy {
+
 
   isCollapsed = true;
   customClass = '';
@@ -161,27 +166,27 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
   // tslint:disable-next-line:typedef
-  // shoot() {
-  //   try {
-  //       this.confetti({
-  //         angle: this.random(60, 120),
-  //         spread: this.random(20, 60),
-  //         particleCount: this.random(300, 400),
-  //         origin: {
-  //             y: 0.6
-  //         }
-  //     });
-  //   } catch (e) {
-  //       // noop, confettijs may not be loaded yet
-  //   }
-  // }
+  shoot() {
+    try {
+        this.confetti({
+          angle: this.random(60, 120),
+          spread: this.random(20, 60),
+          particleCount: this.random(300, 400),
+          origin: {
+              y: 0.6
+          }
+      });
+    } catch (e) {
+        // noop, confettijs may not be loaded yet
+    }
+  }
 
   // tslint:disable-next-line:typedef
   random(min: number, max: number) {
       return Math.random() * (max - min) + min;
   }
 
-  // confetti(args: any) {
-  //     return window.confetti.apply(this, arguments);
-  // }
+  confetti(args: any) {
+      return window.confetti.apply(this, arguments);
+  }
 }
