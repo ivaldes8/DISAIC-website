@@ -35,25 +35,29 @@ export class AppComponent implements OnInit, OnDestroy {
   private userAdminSub: Subscription;
 
   public config: PerfectScrollbarConfigInterface = {};
-  firstBG: HTMLElement;
-  secondBG: HTMLElement;
   constructor(private translate: TranslateService,
               private themeService: ThemeService,
               private authService: AuthService,
               private swUpdate: SwUpdate,
-              private cardService: CardService
-    ){
-     this.firstBG = document.getElementById('firstBG') as HTMLElement;
-     this.secondBG = document.getElementById('secondBG') as HTMLElement;
-    document.addEventListener('scroll', function() {
+              private cardService: CardService,
+                 ){
+
+     function onScroll(evt) {
+      let firstBG: HTMLElement;
+      let secondBG: HTMLElement;
+      firstBG = document.getElementById('firstBG') as HTMLElement;
+      secondBG = document.getElementById('secondBG') as HTMLElement;
+
       const value = window.scrollY;
+
       firstBG.style.top = value * 1 + 'px';
       firstBG.style.right = value * 1 + 'px';
 
       secondBG.style.top = value * 0.25 + 'px';
       secondBG.style.right = value * 1.5 + 'px';
+     }
 
-    });
+    document.addEventListener('scroll',(evt) => onScroll(evt));
     translate.setDefaultLang('es');
   }
 
