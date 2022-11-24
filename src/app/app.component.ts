@@ -47,11 +47,11 @@ export class AppComponent implements OnInit, OnDestroy {
      this.secondBG = document.getElementById('secondBG') as HTMLElement;
     document.addEventListener('scroll', function() {
       const value = window.scrollY;
-      // firstBG.style.top = value * 1 + 'px';
-      // firstBG.style.right = value * 1 + 'px';
+      firstBG.style.top = value * 1 + 'px';
+      firstBG.style.right = value * 1 + 'px';
 
-      // secondBG.style.top = value * 0.25 + 'px';
-      // secondBG.style.right = value * 1.5 + 'px';
+      secondBG.style.top = value * 0.25 + 'px';
+      secondBG.style.right = value * 1.5 + 'px';
 
     });
     translate.setDefaultLang('es');
@@ -82,15 +82,10 @@ export class AppComponent implements OnInit, OnDestroy {
        this.isAdmin = !!user;
       }
     );
-  //  this.profile = await this.userService.getProfile().toPromise();
-  //   if(this.isAuthenticated && this.profile.role > 1){
-  //     this.hideAdministration = true
-  //   }
     this.fetchProducts();
     this.fetchServices();
     this.fetchEntrenamientos();
-   // console.log(this.startList)
-   // this.shoot();
+    // this.shoot();
   }
 
   // tslint:disable-next-line:typedef
